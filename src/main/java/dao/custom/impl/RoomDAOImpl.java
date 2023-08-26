@@ -53,4 +53,13 @@ public class RoomDAOImpl implements RoomDAO {
     public void setSession(Session session) {
         this.session = session;
     }
+
+    public Room getCustomerById(String id) {
+        String sql = "SELECT R FROM Room AS R WHERE R.roomId = :room_type_id";
+        Query namedQuery = session.createQuery(sql);
+        namedQuery.setParameter("room_type_id", id);
+        Room room = (Room) namedQuery.getSingleResult();
+//        session.close();
+        return room;
+    }
 }

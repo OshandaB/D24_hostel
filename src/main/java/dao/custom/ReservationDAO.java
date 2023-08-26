@@ -1,4 +1,8 @@
 package dao.custom;
 
-public interface ReservationDAO {
+import dao.CrudDAO;
+import entity.Reservation;
+
+public interface ReservationDAO extends CrudDAO<Reservation,String> {
+    int countReservation(String id);
 }

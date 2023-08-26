@@ -3,10 +3,12 @@ package dao.custom.impl;
 import dao.custom.StudentDAO;
 import entity.Student;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
 
@@ -35,7 +37,11 @@ session.delete(entity);
 
     @Override
     public ArrayList<String> loadIds() throws SQLException {
-        return null;
+        String sql = "SELECT S.studentId FROM Student AS S";
+        Query query = session.createQuery(sql);
+        List list = query.list();
+        session.close();
+        return (ArrayList<String>) list;
     }
 
     @Override

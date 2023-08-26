@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Data
@@ -13,7 +14,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Embeddable
 public class ReservationDetailsPK implements Serializable {
-    @Column(name = "student_id")
+
+    @Column(name = "student_id",unique = true)
     private String studentId;
     @Column(name = "room_type_id")
     private String roomId;

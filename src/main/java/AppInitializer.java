@@ -15,7 +15,7 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        URL resource = AppInitializer.class.getResource("/assests/Reservation.fxml");
+        URL resource = AppInitializer.class.getResource("/assests/Dashboard.fxml");
         Parent load = FXMLLoader.load(resource);
 
         stage.setScene(new Scene(load));
@@ -23,6 +23,6 @@ public class AppInitializer extends Application {
 
         stage.centerOnScreen();
         stage.show();
-        Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();
+//        Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();
     }
 }

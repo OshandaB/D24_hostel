@@ -17,4 +17,6 @@ public interface ReservationBO {
     boolean deleteReservation(ReservationDTO reservationDTO);
     public ArrayList<ReservationDTO> getAllReservation() throws SQLException;
     ArrayList<String> loadRoomIds()  throws SQLException;
+    ArrayList<String> loadStudentIds()  throws SQLException;
+//    int countReservation(String id);
 }

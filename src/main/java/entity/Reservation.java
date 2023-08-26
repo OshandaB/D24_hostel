@@ -29,7 +29,7 @@ public class Reservation implements Serializable {
     private String status;
     @ManyToOne
     @JoinColumn(name = "student_id",
-          referencedColumnName = "student_id",
+            referencedColumnName = "student_id",
             insertable = false,
             updatable = false)
     private Student student;
@@ -39,4 +39,11 @@ public class Reservation implements Serializable {
             insertable = false,
             updatable = false)
     private Room room;
+
+    public Reservation(String resId, ReservationDetailsPK reservationDetailsPK, LocalDate date, String status) {
+        this.resId = resId;
+        this.reservationDetailsPK = reservationDetailsPK;
+        this.date = date;
+        this.status = status;
+    }
 }

@@ -8,19 +8,19 @@
 
 <AnchorPane prefHeight="617.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReservationController">
    <children>
-      <TextField fx:id="txtId" layoutX="109.0" layoutY="158.0" />
-      <TextField fx:id="txtDate" layoutX="352.0" layoutY="158.0" />
-      <TextField fx:id="txtStatus" layoutX="109.0" layoutY="227.0" />
+      <TextField fx:id="txtId" layoutX="109.0" layoutY="194.0" />
+      <TextField fx:id="txtStatus" layoutX="109.0" layoutY="274.0" />
       <Label layoutX="93.0" layoutY="54.0" text="Student ID" />
-      <Label layoutX="117.0" layoutY="134.0" text="res Id" />
-      <Label layoutX="109.0" layoutY="203.0" text="Status" />
+      <Label layoutX="110.0" layoutY="170.0" text="res Id" />
+      <Label layoutX="107.0" layoutY="249.0" text="Status" />
       <Label layoutX="362.0" layoutY="211.0" />
-      <Button layoutX="426.0" layoutY="278.0" mnemonicParsing="false" onAction="#SaveOnAction" text="Save" />
-      <Button layoutX="510.0" layoutY="278.0" mnemonicParsing="false" onAction="#updateOnAction" text="Update" />
-      <Button layoutX="599.0" layoutY="278.0" mnemonicParsing="false" onAction="#deleteOnAction" text="Delete" />
-      <ComboBox fx:id="cmbStudentIds" layoutX="120.0" layoutY="78.0" prefWidth="150.0" />
-      <ComboBox fx:id="cmbRoomIds" layoutX="351.0" layoutY="78.0" prefWidth="150.0" />
+      <Button layoutX="426.0" layoutY="309.0" mnemonicParsing="false" onAction="#SaveOnAction" text="Save" />
+      <Button layoutX="510.0" layoutY="309.0" mnemonicParsing="false" onAction="#updateOnAction" text="Update" />
+      <Button layoutX="599.0" layoutY="309.0" mnemonicParsing="false" onAction="#deleteOnAction" text="Delete" />
+      <ComboBox fx:id="cmbStudentIds" layoutX="109.0" layoutY="90.0" prefWidth="150.0" />
+      <ComboBox fx:id="cmbRoomIds" layoutX="351.0" layoutY="90.0" onAction="#roomOnAction" prefWidth="150.0" />
       <Label layoutX="351.0" layoutY="54.0" text="Room Type Id " />
-      <Label layoutX="362.0" layoutY="134.0" text="Date" />
+      <Label layoutX="362.0" layoutY="170.0" text="Date" />
+      <Label fx:id="lblDate" layoutX="362.0" layoutY="196.0" prefHeight="30.0" prefWidth="162.0" />
    </children>
 </AnchorPane>
