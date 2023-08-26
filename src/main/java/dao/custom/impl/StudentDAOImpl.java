@@ -1,6 +1,7 @@
 package dao.custom.impl;
 
 import dao.custom.StudentDAO;
+import entity.Room;
 import entity.Student;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -22,7 +23,14 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public ArrayList<Student> getAll() throws SQLException {
-        return null;
+        try {
+            List<Student> studentList = session.createNativeQuery("Select * from Student", Student.class).getResultList();
+            return (ArrayList<Student>) studentList;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
     }
 
     @Override

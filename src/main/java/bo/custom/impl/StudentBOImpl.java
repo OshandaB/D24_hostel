@@ -4,9 +4,15 @@ import bo.custom.StudentBO;
 import config.SessionFactoryConfig;
 import dao.custom.StudentDAO;
 import dao.custom.impl.StudentDAOImpl;
+import dto.RoomDTO;
 import dto.StudentDTO;
+import entity.Room;
+import entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class StudentBOImpl implements StudentBO {
     StudentDAO studentDAO = new StudentDAOImpl();
@@ -62,5 +68,26 @@ public class StudentBOImpl implements StudentBO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public ArrayList<StudentDTO> getAllStudents() throws SQLException {
+        Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();
+        studentDAO.setSession(session);
+        ArrayList<Student> students = studentDAO.getAll();
+        ArrayList<StudentDTO> studentDTOS = new ArrayList<>();
+        for (Student student : students) {
+            studentDTOS.add(new StudentDTO(
+                    student.getStudentId(),
+                    student.getStudentName(),
+                    student.getAddress(),
+                    student.getContact(),
+                    student.getDob(),
+                    student.getGender()
+            ));
+
+        }
+        session.close();
+        return studentDTOS;
     }
 }

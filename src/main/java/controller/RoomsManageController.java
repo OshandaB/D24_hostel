@@ -7,20 +7,28 @@ import bo.custom.impl.StudentBOImpl;
 import dto.RoomDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import view.tdm.RoomTM;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RoomsManageController implements Initializable {
+    public AnchorPane roomsPane;
     RoomBO roomBO = new RoomBOImpl();
     @FXML
     private TextField txtId;
@@ -88,13 +96,14 @@ public class RoomsManageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setCellValueFactory();
-//        getAll();
+        getAll();
     }
 
     private void getAll() throws SQLException {
+        tableRoom.getItems().clear();
         ArrayList<RoomDTO> allRooms = roomBO.getAllRooms();
         for (RoomDTO allRoom : allRooms) {
-            tableRoom.getItems().addAll(new RoomTM(allRoom.getRoomTypeId(),allRoom.getKeyMoney(),allRoom.getRoomType(),allRoom.getQty()));
+            tableRoom.getItems().addAll(new RoomTM(allRoom.getRoomTypeId(), allRoom.getKeyMoney(), allRoom.getRoomType(), allRoom.getQty()));
         }
 
     }
@@ -107,4 +116,24 @@ public class RoomsManageController implements Initializable {
 
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
     }
-}
+
+    public void dashboardOnAction(MouseEvent mouseEvent) {
+        Stage stage = new Stage();
+        stage.resizableProperty().setValue(true);
+        try {
+            URL resource = DashboardController.class.getResource("/assests/Dashboard.fxml");
+            Parent load = FXMLLoader.load(resource);
+            stage.setScene(new Scene(load));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setTitle("OB superMarket");
+
+        stage.centerOnScreen();
+
+
+        stage.show();
+        roomsPane.getScene().getWindow().hide();
+    }
+    }
+

@@ -2,15 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 
-
-<AnchorPane prefHeight="597.0" prefWidth="967.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+<AnchorPane fx:id="pane1" prefHeight="597.0" prefWidth="967.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
    <children>
-      <Circle fill="DODGERBLUE" layoutX="204.0" layoutY="504.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="363.0" layoutY="504.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="548.0" layoutY="504.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="731.0" layoutY="498.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button layoutX="191.0" layoutY="232.0" mnemonicParsing="false" prefHeight="123.0" prefWidth="130.0" styleClass="button01" stylesheets="@styles/Styles.css" text="Button" />
+      <Button focusTraversable="false" layoutX="128.0" layoutY="433.0" mnemonicParsing="false" onAction="#studentOnAction" prefHeight="103.0" prefWidth="130.0" text="Student" />
+      <Button focusTraversable="false" layoutX="303.0" layoutY="433.0" mnemonicParsing="false" onAction="#roomsOnAction" prefHeight="103.0" prefWidth="130.0" text="Rooms" />
+      <Button focusTraversable="false" layoutX="465.0" layoutY="433.0" mnemonicParsing="false" onAction="#reservationOnAction" prefHeight="103.0" prefWidth="130.0" text="Reservation" />
+      <Button focusTraversable="false" layoutX="623.0" layoutY="433.0" mnemonicParsing="false" onAction="#paymentOnAction" prefHeight="103.0" prefWidth="146.0" text="Payement Details" />
    </children>
 </AnchorPane>
