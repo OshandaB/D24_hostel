@@ -2,6 +2,7 @@ package lk.ijse.D24_hostel.bo.custom.impl;
 
 import lk.ijse.D24_hostel.bo.custom.RoomBO;
 import lk.ijse.D24_hostel.config.SessionFactoryConfig;
+import lk.ijse.D24_hostel.dao.DAOFactory;
 import lk.ijse.D24_hostel.dao.custom.RoomDAO;
 import lk.ijse.D24_hostel.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.D24_hostel.dto.RoomDTO;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RoomBOImpl implements RoomBO {
-    RoomDAO roomDAO = new RoomDAOImpl();
+    RoomDAO roomDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.RoomDAO);
 
     @Override
     public boolean saveRooms(RoomDTO roomDTO) {

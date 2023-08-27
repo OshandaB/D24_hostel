@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="524.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.LoginController">
+<AnchorPane prefHeight="524.0" prefWidth="701.0" style="-fx-background-color: #161B22;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.LoginController">
    <children>
       <ImageView fitHeight="527.0" fitWidth="393.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/login.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="486.0" layoutY="51.0" prefHeight="44.0" prefWidth="138.0" text="Login">
+      <Label layoutX="486.0" layoutY="51.0" prefHeight="44.0" prefWidth="138.0" style="-fx-text-fill: #2BD883;" text="Login">
          <font>
             <Font name="NimbusMonoPS-Regular" size="37.0" />
          </font>
       </Label>
+      <TextField fx:id="txtUserName" layoutX="470.0" layoutY="211.0" />
+      <TextField fx:id="txtPassword" layoutX="470.0" layoutY="282.0" />
+      <Label layoutX="452.0" layoutY="169.0" prefHeight="32.0" prefWidth="91.0" style="-fx-text-fill: #2BD883;" text="User Name" />
+      <Label layoutX="452.0" layoutY="246.0" prefHeight="32.0" prefWidth="91.0" style="-fx-text-fill: #2BD883;" text="Password" />
+      <JFXButton buttonType="RAISED" layoutX="510.0" layoutY="347.0" onAction="#signInOnAction" prefHeight="24.0" prefWidth="91.0" style="-fx-background-color: #2BD883;" text="Sign In" />
+      <JFXButton buttonType="RAISED" layoutX="510.0" layoutY="390.0" onAction="#signUpOnAction" prefHeight="24.0" prefWidth="91.0" style="-fx-background-color: #2BD883;" text="Sign Up" />
    </children>
 </AnchorPane>

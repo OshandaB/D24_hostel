@@ -2,6 +2,7 @@ package lk.ijse.D24_hostel.bo.custom.impl;
 
 import lk.ijse.D24_hostel.bo.custom.StudentBO;
 import lk.ijse.D24_hostel.config.SessionFactoryConfig;
+import lk.ijse.D24_hostel.dao.DAOFactory;
 import lk.ijse.D24_hostel.dao.custom.StudentDAO;
 import lk.ijse.D24_hostel.dao.custom.impl.StudentDAOImpl;
 import lk.ijse.D24_hostel.dto.StudentDTO;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class StudentBOImpl implements StudentBO {
-    StudentDAO studentDAO = new StudentDAOImpl();
+    StudentDAO studentDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.StudentDAO);
     @Override
     public boolean saveStudent(StudentDTO studentDTO) {
         Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();

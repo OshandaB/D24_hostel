@@ -16,7 +16,7 @@ public class AppInitializer extends Application {
         Parent load = FXMLLoader.load(resource);
 
         stage.setScene(new Scene(load));
-        stage.setTitle("Super Market");
+        stage.setTitle("D24_Hostel");
 
         stage.centerOnScreen();
         stage.show();

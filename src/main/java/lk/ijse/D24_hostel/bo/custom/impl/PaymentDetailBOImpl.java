@@ -2,6 +2,7 @@ package lk.ijse.D24_hostel.bo.custom.impl;
 
 import lk.ijse.D24_hostel.bo.custom.PaymentDetailBO;
 import lk.ijse.D24_hostel.config.SessionFactoryConfig;
+import lk.ijse.D24_hostel.dao.DAOFactory;
 import lk.ijse.D24_hostel.dao.custom.QueryDAO;
 import lk.ijse.D24_hostel.dao.custom.impl.QueryDAOImpl;
 import lk.ijse.D24_hostel.dto.CustomDTO;
@@ -14,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentDetailBOImpl implements PaymentDetailBO {
-QueryDAO queryDAO = new QueryDAOImpl();
+    QueryDAO queryDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.QueryDAO);
+
     @Override
     public List<CustomDTO> getPaymentDetails() {
         Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();

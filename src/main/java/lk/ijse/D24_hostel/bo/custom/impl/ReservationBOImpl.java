@@ -2,6 +2,7 @@ package lk.ijse.D24_hostel.bo.custom.impl;
 
 import lk.ijse.D24_hostel.bo.custom.ReservationBO;
 import lk.ijse.D24_hostel.config.SessionFactoryConfig;
+import lk.ijse.D24_hostel.dao.DAOFactory;
 import lk.ijse.D24_hostel.dao.custom.ReservationDAO;
 import lk.ijse.D24_hostel.dao.custom.RoomDAO;
 import lk.ijse.D24_hostel.dao.custom.StudentDAO;
@@ -19,9 +20,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ReservationBOImpl implements ReservationBO {
-    RoomDAO roomDAO = new RoomDAOImpl();
-    StudentDAO studentDAO = new StudentDAOImpl();
-    ReservationDAO reservationDAO = new ReservationDAOImpl();
+    RoomDAO roomDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.RoomDAO);
+    StudentDAO studentDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.StudentDAO);
+    ReservationDAO reservationDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ReservationDAO);
+
     @Override
     public boolean saveReservation(ReservationDTO reservationDTO) {
         Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();
@@ -39,11 +41,11 @@ public class ReservationBOImpl implements ReservationBO {
             System.out.println(count1);
 
 
-            RoomDTO roomDTO = new RoomDTO(roomss.getRoomId(),roomss.getKeyMoney(),roomss.getRoomType(),roomss.getQty(),roomss.getAvaliable_room());
-            roomDTO.setAvaliable_room(roomss.getQty()-count1);
+            RoomDTO roomDTO = new RoomDTO(roomss.getRoomId(), roomss.getKeyMoney(), roomss.getRoomType(), roomss.getQty(), roomss.getAvaliable_room());
+            roomDTO.setAvaliable_room(roomss.getQty() - count1);
             System.out.println(roomDTO.getQty());
 //            roomDAO.update(new Room(roomDTO.getRoomTypeId(),roomDTO.getRoomType(),roomDTO.getKeyMoney(),roomDTO.getQty()));
-          session.merge(roomDTO.toEntity());
+            session.merge(roomDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -98,8 +100,8 @@ public class ReservationBOImpl implements ReservationBO {
             System.out.println(count1);
 
 
-            RoomDTO roomDTO = new RoomDTO(roomss.getRoomId(),roomss.getKeyMoney(),roomss.getRoomType(),roomss.getQty(),roomss.getAvaliable_room());
-            roomDTO.setAvaliable_room(roomss.getQty()-count1);
+            RoomDTO roomDTO = new RoomDTO(roomss.getRoomId(), roomss.getKeyMoney(), roomss.getRoomType(), roomss.getQty(), roomss.getAvaliable_room());
+            roomDTO.setAvaliable_room(roomss.getQty() - count1);
             System.out.println(roomDTO.getQty());
 //            roomDAO.update(new Room(roomDTO.getRoomTypeId(),roomDTO.getRoomType(),roomDTO.getKeyMoney(),roomDTO.getQty()));
             session.merge(roomDTO.toEntity());
