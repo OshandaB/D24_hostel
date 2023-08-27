@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.PaymentDetailsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="paymentPane" prefHeight="471.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.PaymentDetailsController">
+   <children>
+      <TableView fx:id="tblPymentDetails" blendMode="DARKEN" layoutX="26.0" layoutY="164.0" prefHeight="247.0" prefWidth="668.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" tableMenuButtonVisible="true">
+        <columns>
+          <TableColumn fx:id="colSId" prefWidth="85.0" style="-fx-background-radius: 10;" text="Student Id" />
+          <TableColumn fx:id="colName" prefWidth="92.0" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="84.0" text="Address" />
+            <TableColumn fx:id="colContact" prefWidth="105.0" text="Contact" />
+            <TableColumn fx:id="colDob" prefWidth="68.0" text="Dob" />
+            <TableColumn fx:id="colGender" prefWidth="78.0" text="Gender" />
+            <TableColumn fx:id="colResId" prefWidth="73.0" text="Res Id" />
+            <TableColumn fx:id="colStatus" prefWidth="92.0" text="Status" />
+        </columns>
+         <effect>
+            <DropShadow />
+         </effect>
+      </TableView>
+   </children>
 </AnchorPane>

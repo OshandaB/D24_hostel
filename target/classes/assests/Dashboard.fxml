@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane1" prefHeight="597.0" prefWidth="967.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+<AnchorPane fx:id="pane1" prefHeight="597.0" prefWidth="967.0" style="-fx-background-color: #161B22;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.DashboardController">
    <children>
-      <Button focusTraversable="false" layoutX="128.0" layoutY="433.0" mnemonicParsing="false" onAction="#studentOnAction" prefHeight="103.0" prefWidth="130.0" text="Student" />
-      <Button focusTraversable="false" layoutX="303.0" layoutY="433.0" mnemonicParsing="false" onAction="#roomsOnAction" prefHeight="103.0" prefWidth="130.0" text="Rooms" />
-      <Button focusTraversable="false" layoutX="465.0" layoutY="433.0" mnemonicParsing="false" onAction="#reservationOnAction" prefHeight="103.0" prefWidth="130.0" text="Reservation" />
-      <Button focusTraversable="false" layoutX="623.0" layoutY="433.0" mnemonicParsing="false" onAction="#paymentOnAction" prefHeight="103.0" prefWidth="146.0" text="Payement Details" />
+      <Button focusTraversable="false" layoutX="128.0" layoutY="433.0" mnemonicParsing="false" onAction="#studentOnAction" prefHeight="103.0" prefWidth="130.0" style="-fx-background-radius: 0 30 0 30; -fx-background-color: #2BD883;" text="Student" />
+      <Button focusTraversable="false" layoutX="303.0" layoutY="433.0" mnemonicParsing="false" onAction="#roomsOnAction" prefHeight="103.0" prefWidth="130.0" style="-fx-background-radius: 0 30 0 30; -fx-background-color: #2BD883;" text="Rooms" />
+      <Button focusTraversable="false" layoutX="465.0" layoutY="433.0" mnemonicParsing="false" onAction="#reservationOnAction" prefHeight="103.0" prefWidth="130.0" style="-fx-background-radius: 0 30 0 30; -fx-background-color: #2BD883;" text="Reservation" />
+      <Button focusTraversable="false" layoutX="623.0" layoutY="433.0" mnemonicParsing="false" onAction="#paymentOnAction" prefHeight="103.0" prefWidth="146.0" style="-fx-background-radius: 0 30 0 30; -fx-background-color: #2BD883;" text="Payement Details" />
+      <Label fx:id="lblTime" layoutX="651.0" layoutY="122.0" prefHeight="142.0" prefWidth="212.0" text="09:45" textFill="WHITE">
+         <font>
+            <Font size="65.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTime1" layoutX="850.0" layoutY="192.0" prefHeight="31.0" prefWidth="77.0" text="AM" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="95.0" layoutY="80.0" prefHeight="142.0" prefWidth="179.0" style="-fx-border-color: #2BD883; -fx-background-radius: 0 10 10 0;" />
+      <AnchorPane layoutX="321.0" layoutY="89.0" prefHeight="134.0" prefWidth="173.0" />
    </children>
 </AnchorPane>
