@@ -3,6 +3,7 @@ package lk.ijse.D24_hostel.config;
 import lk.ijse.D24_hostel.entity.Reservation;
 import lk.ijse.D24_hostel.entity.Room;
 import lk.ijse.D24_hostel.entity.Student;
+import lk.ijse.D24_hostel.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,16 +17,7 @@ public class SessionFactoryConfig {
     private final SessionFactory sessionFactory;
 
     private SessionFactoryConfig() {
-//    Properties properties = new Properties();
-//    try {
-//        properties.load(new FileInputStream("hibernate.properties"));
-//    }catch (IOException e) {
-//        e.printStackTrace();
-//    }
-//    Configuration configuration = new Configuration()
-//            .addProperties(properties)
-//            .addAnnotatedClass(Student.class);
-//    sessionFactory = configuration.buildSessionFactory();
+
         Properties properties = new Properties();
         try {
             InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("hibernate.properties");
@@ -44,7 +36,9 @@ public class SessionFactoryConfig {
                 .setProperties(properties).
                         addAnnotatedClass(Student.class).
                         addAnnotatedClass(Room.class).
-                        addAnnotatedClass(Reservation.class).buildSessionFactory();
+                        addAnnotatedClass(Reservation.class).
+                        addAnnotatedClass(User.class).
+                        buildSessionFactory();
 
     }
 

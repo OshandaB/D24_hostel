@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="480.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.ChangePwdController">
+   <children>
+      <TextField fx:id="txtUserName" layoutX="90.0" layoutY="184.0" />
+      <TextField fx:id="txtPassword" layoutX="90.0" layoutY="257.0" />
+      <TextField fx:id="txtConfirmPwd" layoutX="90.0" layoutY="332.0" />
+      <Label layoutX="62.0" layoutY="157.0" text="Change Your UserName" />
+      <Label layoutX="61.0" layoutY="232.0" text="Change Your Password" />
+      <Label layoutX="62.0" layoutY="305.0" text="Confirm Password" />
+      <JFXButton buttonType="RAISED" layoutX="126.0" layoutY="392.0" onAction="#ChangeOnAction" prefHeight="36.0" prefWidth="99.0" style="-fx-background-color: #2BD883;" text="Change" />
+      <Label fx:id="lblUsrId" layoutX="116.0" layoutY="95.0" prefHeight="24.0" prefWidth="109.0" text="Label" />
+   </children>
+</AnchorPane>

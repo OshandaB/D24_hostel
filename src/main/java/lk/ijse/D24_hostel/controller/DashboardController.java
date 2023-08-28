@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -20,6 +21,14 @@ public class DashboardController implements Initializable {
     public AnchorPane pane1;
     public Label lblTime;
     public Label lblTime1;
+    public Label lblDate;
+    public Label lblTest;
+    private  String userId;
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+
+    }
 
     public void studentOnAction(ActionEvent event) {
         Stage stage = new Stage();
@@ -101,6 +110,7 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 TimeNow();
+lblTest.setText(LoginController.id);
     }
 
     private void TimeNow() {
@@ -121,6 +131,7 @@ TimeNow();
                 Platform.runLater(() ->{
                     lblTime.setText(timenow);
                     lblTime1.setText(timenow2);
+                    lblDate.setText(timenow1);
 //                    labelTime.setStyle("-fx-font-size: 25px; -fx-text-fill: white");
 //                    labelTime1.setText(timenow1);
 //                    labelTime1.setStyle("-fx-font-size: 15px; -fx-text-fill: white");
@@ -128,5 +139,25 @@ TimeNow();
             }
         });
         thread.start();
+    }
+
+    public void chngePwdOnAction(MouseEvent mouseEvent) {
+        ChangePwdController changePwdController = new ChangePwdController();
+        changePwdController.setUserId(userId);
+        Stage stage = new Stage();
+        stage.resizableProperty().setValue(true);
+        try {
+            URL resource = DashboardController.class.getResource("/assests/Change_pwd.fxml");
+            Parent load = FXMLLoader.load(resource);
+            stage.setScene(new Scene(load));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setTitle("OB superMarket");
+
+        stage.centerOnScreen();
+
+
+        stage.show();
     }
 }
