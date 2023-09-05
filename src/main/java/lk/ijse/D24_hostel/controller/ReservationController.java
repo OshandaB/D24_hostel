@@ -2,8 +2,12 @@ package lk.ijse.D24_hostel.controller;
 
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import lk.ijse.D24_hostel.bo.BOFactory;
 import lk.ijse.D24_hostel.bo.custom.ReservationBO;
 import lk.ijse.D24_hostel.bo.custom.impl.ReservationBOImpl;
+import lk.ijse.D24_hostel.controller.util.ValidationController;
+import lk.ijse.D24_hostel.dto.CustomDTO;
 import lk.ijse.D24_hostel.dto.ReservationDTO;
 import lk.ijse.D24_hostel.dto.RoomDTO;
 import lk.ijse.D24_hostel.embedded.ReservationDetailsPK;
@@ -30,7 +34,17 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ReservationController implements Initializable {
+    public TextField txtSearch;
+    @FXML
+    private Button btnDelete;
 
+    @FXML
+    private Button btnSave;
+
+    @FXML
+    private Button btnUpdate;
+
+    public Label lblAvaRooms;
     @FXML
     private ComboBox<String> cmbRoomIds;
 
@@ -68,7 +82,7 @@ public class ReservationController implements Initializable {
     private TextField txtStatus;
 
 
-    ReservationBO reservationBO = new ReservationBOImpl();
+    ReservationBO reservationBO = BOFactory.getBoFactory().getBo(BOFactory.BOTypes.ReservationBO);
 
     public void SaveOnAction(ActionEvent actionEvent) {
         String stId = cmbStudentIds.getValue();
@@ -76,13 +90,12 @@ public class ReservationController implements Initializable {
         String resId = txtId.getText();
         LocalDate date = LocalDate.parse(lblDate.getText());
         String status = txtStatus.getText();
-        ReservationDetailsPK reservationDetailsPK = new ReservationDetailsPK(stId,roomTypeId);
-        ReservationDTO reservationDTO = new ReservationDTO(reservationDetailsPK.getRoomId(),reservationDetailsPK.getStudentId(),resId,date,status);
+        ReservationDetailsPK reservationDetailsPK = new ReservationDetailsPK(stId, roomTypeId);
+        ReservationDTO reservationDTO = new ReservationDTO(reservationDetailsPK.getRoomId(), reservationDetailsPK.getStudentId(), resId, date, status);
         boolean saved = reservationBO.saveReservation(reservationDTO);
-        if (saved){
+        if (saved) {
             System.out.println("saved");
         }
-
 
 
     }
@@ -93,10 +106,10 @@ public class ReservationController implements Initializable {
         String resId = txtId.getText();
         LocalDate date = LocalDate.parse(lblDate.getText());
         String status = txtStatus.getText();
-        ReservationDetailsPK reservationDetailsPK = new ReservationDetailsPK(stId,roomTypeId);
-        ReservationDTO reservationDTO = new ReservationDTO(reservationDetailsPK.getRoomId(),reservationDetailsPK.getStudentId(),resId,date,status);
+        ReservationDetailsPK reservationDetailsPK = new ReservationDetailsPK(stId, roomTypeId);
+        ReservationDTO reservationDTO = new ReservationDTO(reservationDetailsPK.getRoomId(), reservationDetailsPK.getStudentId(), resId, date, status);
         boolean updated = reservationBO.updateReservation(reservationDTO);
-        if (updated){
+        if (updated) {
             System.out.println("updated");
         }
     }
@@ -107,10 +120,10 @@ public class ReservationController implements Initializable {
         String resId = txtId.getText();
         LocalDate date = LocalDate.parse(lblDate.getText());
         String status = txtStatus.getText();
-        ReservationDetailsPK reservationDetailsPK = new ReservationDetailsPK(stId,roomTypeId);
-        ReservationDTO reservationDTO = new ReservationDTO(reservationDetailsPK.getRoomId(),reservationDetailsPK.getStudentId(),resId,date,status);
+        ReservationDetailsPK reservationDetailsPK = new ReservationDetailsPK(stId, roomTypeId);
+        ReservationDTO reservationDTO = new ReservationDTO(reservationDetailsPK.getRoomId(), reservationDetailsPK.getStudentId(), resId, date, status);
         boolean updated = reservationBO.deleteReservation(reservationDTO);
-        if (updated){
+        if (updated) {
             System.out.println("deleted");
         }
     }
@@ -118,6 +131,7 @@ public class ReservationController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         setCellValueFactory();
         getAll();
         lblDate.setText(String.valueOf(LocalDate.now()));
@@ -173,7 +187,9 @@ public class ReservationController implements Initializable {
     }
 
     public void roomOnAction(ActionEvent event) {
-     String id = cmbRoomIds.getValue();
+        String id = cmbRoomIds.getValue();
+        RoomDTO dto = reservationBO.getRoomsById(id);
+        lblAvaRooms.setText(String.valueOf(dto.getAvaliable_room()));
 //        int count = reservationBO.countReservation(id);
 //
 //        System.out.println(count);
@@ -215,5 +231,49 @@ public class ReservationController implements Initializable {
 
         stage.show();
 
+    }
+
+    public void tblOnAction(MouseEvent mouseEvent) {
+        ReservationTM tm = (ReservationTM) tblResevation.getSelectionModel().getSelectedItem();
+        txtId.setText(tm.getResId());
+        cmbStudentIds.setValue(tm.getStudentId());
+        cmbRoomIds.setValue(tm.getRoomTypeId());
+        txtStatus.setText(tm.getStatus());
+
+    }
+
+    public void txtValiResId(KeyEvent keyEvent) {
+        String id = txtId.getText();
+
+        try {
+            boolean isValidate = ValidationController.resId(id);
+
+//          btnSave.setDisable(!isValidate | txtCustId.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty() | txtEmail.getText().isEmpty() );
+            if (isValidate) {
+                txtId.setStyle("-fx-border-color : green");
+                txtId.setOnAction((e) -> {
+                    txtStatus.requestFocus();
+                });
+                btnSave.setDisable(!isValidate | txtId.getText().isEmpty() | cmbStudentIds.getSelectionModel().isEmpty() | cmbRoomIds.getSelectionModel().isEmpty());
+                btnUpdate.setDisable(!isValidate | txtId.getText().isEmpty() | cmbStudentIds.getSelectionModel().isEmpty() | cmbRoomIds.getSelectionModel().isEmpty());
+                btnDelete.setDisable(!isValidate | txtId.getText().isEmpty() | cmbStudentIds.getSelectionModel().isEmpty() | cmbRoomIds.getSelectionModel().isEmpty());
+
+            } else {
+                txtId.setStyle("-fx-border-color: red");
+                //btnSave.setDisable(true);
+                btnSave.setDisable(!isValidate | txtId.getText().isEmpty() | cmbStudentIds.getSelectionModel().isEmpty() | cmbRoomIds.getSelectionModel().isEmpty());
+                btnUpdate.setDisable(!isValidate | txtId.getText().isEmpty() | cmbStudentIds.getSelectionModel().isEmpty() | cmbRoomIds.getSelectionModel().isEmpty());
+                btnDelete.setDisable(!isValidate | txtId.getText().isEmpty() | cmbStudentIds.getSelectionModel().isEmpty() | cmbRoomIds.getSelectionModel().isEmpty());
+
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
+    public void searchOnAction(MouseEvent mouseEvent) {
+        String id = txtSearch.getText();
+        CustomDTO details = reservationBO.getStudentDetails(id);
+        System.out.println(details);
     }
 }

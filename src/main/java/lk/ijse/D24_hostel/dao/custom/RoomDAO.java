@@ -5,4 +5,5 @@ import lk.ijse.D24_hostel.entity.Room;
 
 public interface RoomDAO  extends CrudDAO<Room,String> {
     public Room getCustomerById(String id) ;
+    int RoomsCount();
 }

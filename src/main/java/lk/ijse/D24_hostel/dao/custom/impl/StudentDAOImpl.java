@@ -54,4 +54,12 @@ session.delete(entity);
     public void setSession(Session session) {
         this.session = session;
     }
+
+    @Override
+    public int StudentCount() {
+        String sql = "SELECT COUNT(S.studentId) FROM Student AS S";
+        Query query = session.createQuery(sql);
+        Long count = (Long) query.getSingleResult();
+        return Math.toIntExact(count);
+    }
 }

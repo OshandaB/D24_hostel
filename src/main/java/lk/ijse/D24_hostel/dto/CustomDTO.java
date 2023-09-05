@@ -18,4 +18,12 @@ public class CustomDTO {
     private String resId;
     private String status;
 
+    public CustomDTO(String studentId, String studentName, String address, String contact, LocalDate dob, String gender) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.address = address;
+        this.contact = contact;
+        this.dob = dob;
+        this.gender = gender;
+    }
 }

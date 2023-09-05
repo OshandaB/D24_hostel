@@ -62,4 +62,12 @@ public class RoomDAOImpl implements RoomDAO {
 //        session.close();
         return room;
     }
+
+    @Override
+    public int RoomsCount() {
+        String sql = "SELECT COUNT(R.roomId) FROM Room AS R";
+        Query query = session.createQuery(sql);
+        Long count = (Long) query.getSingleResult();
+        return Math.toIntExact(count);
+    }
 }

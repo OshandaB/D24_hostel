@@ -81,7 +81,8 @@ public class RoomBOImpl implements RoomBO {
                     room.getRoomId(),
                     room.getKeyMoney(),
                     room.getRoomType(),
-                    room.getQty()
+                    room.getQty(),
+                    room.getMaximum_student()
             ));
 
         }

@@ -1,11 +1,12 @@
 package lk.ijse.D24_hostel.bo.custom;
 
+import lk.ijse.D24_hostel.bo.SuperBO;
 import lk.ijse.D24_hostel.dto.StudentDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface StudentBO {
+public interface StudentBO extends SuperBO {
     boolean saveStudent(StudentDTO studentDTO);
 
 

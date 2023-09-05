@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="434.0" prefWidth="300.0" style="-fx-background-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.SignUpController">
+<AnchorPane fx:id="signUPPane" prefHeight="434.0" prefWidth="300.0" style="-fx-background-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.SignUpController">
    <children>
       <Label layoutX="92.0" layoutY="32.0" text="Sign Up">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUserId" layoutX="72.0" layoutY="147.0" />
-      <TextField fx:id="txtUserName" layoutX="72.0" layoutY="205.0" />
+      <TextField fx:id="txtUserId" layoutX="72.0" layoutY="147.0" onKeyTyped="#txtValiUserId" />
+      <TextField fx:id="txtUserName" layoutX="72.0" layoutY="205.0" onKeyTyped="#txtValiName" />
       <Label layoutX="62.0" layoutY="116.0" text="User Id" />
       <Label layoutX="62.0" layoutY="183.0" text="User Name" />
-      <TextField fx:id="txtPwd" layoutX="72.0" layoutY="270.0" />
+      <TextField fx:id="txtPwd" layoutX="72.0" layoutY="270.0" onKeyTyped="#txtvaliPassword" />
       <Label layoutX="62.0" layoutY="245.0" text="Password" />
-      <JFXButton buttonType="RAISED" layoutX="112.0" layoutY="345.0" onAction="#signUpOnAction" prefHeight="24.0" prefWidth="91.0" style="-fx-background-color: #2BD883;" text="Sign Up" />
+      <JFXButton fx:id="btnSignUp" buttonType="RAISED" layoutX="112.0" layoutY="345.0" onAction="#signUpOnAction" prefHeight="24.0" prefWidth="91.0" style="-fx-background-color: #2BD883;" text="Sign Up" />
    </children>
 </AnchorPane>

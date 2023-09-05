@@ -23,20 +23,24 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="119.0" layoutY="79.0" prefHeight="142.0" prefWidth="173.0" style="-fx-background-radius: 20; -fx-background-color: #2BD883;" />
+      <AnchorPane layoutX="119.0" layoutY="79.0" prefHeight="142.0" prefWidth="173.0" style="-fx-background-radius: 20; -fx-background-color: #2BD883;">
+         <children>
+            <Label fx:id="lblRoomCount" layoutX="58.0" layoutY="71.0" prefHeight="31.0" prefWidth="58.0" text="Label" />
+         </children></AnchorPane>
       <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="863.0" layoutY="23.0" onMouseClicked="#chngePwdOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/icons8-settings-96.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblDate" layoutX="645.0" layoutY="251.0" prefHeight="21.0" prefWidth="227.0" text="Label" textFill="WHITE">
+      <Label fx:id="lblDate" layoutX="623.0" layoutY="251.0" prefHeight="21.0" prefWidth="227.0" text="Label" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="128.0" layoutY="251.0" prefHeight="142.0" prefWidth="173.0" style="-fx-background-radius: 20; -fx-background-color: #2BD883;" />
-      <AnchorPane layoutX="357.0" layoutY="79.0" prefHeight="142.0" prefWidth="173.0" style="-fx-background-radius: 20; -fx-background-color: #2BD883;" />
-      <AnchorPane layoutX="357.0" layoutY="251.0" prefHeight="142.0" prefWidth="173.0" style="-fx-background-radius: 20; -fx-background-color: #2BD883;" />
+      <AnchorPane layoutX="357.0" layoutY="79.0" prefHeight="142.0" prefWidth="173.0" style="-fx-background-radius: 20; -fx-background-color: #2BD883;">
+         <children>
+            <Label fx:id="lblStuCount" layoutX="56.0" layoutY="82.0" prefHeight="31.0" prefWidth="58.0" text="Label" />
+         </children></AnchorPane>
       <Label fx:id="lblTest" layoutX="197.0" layoutY="31.0" text="Label" textFill="WHITE" />
    </children>
 </AnchorPane>

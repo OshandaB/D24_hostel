@@ -11,18 +11,18 @@
 
 <AnchorPane fx:id="roomsPane" prefHeight="617.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.RoomsManageController">
    <children>
-      <TextField fx:id="txtId" layoutX="109.0" layoutY="114.0" />
+      <TextField fx:id="txtId" layoutX="109.0" layoutY="114.0" onKeyTyped="#txtValiId" />
       <TextField fx:id="txtType" layoutX="352.0" layoutY="114.0" />
-      <TextField fx:id="txtKeyMonet" layoutX="109.0" layoutY="199.0" />
-      <TextField fx:id="txtQty" layoutX="352.0" layoutY="199.0" />
+      <TextField fx:id="txtKeyMonet" layoutX="109.0" layoutY="199.0" onKeyTyped="#txtValiKeyMoney" />
+      <TextField fx:id="txtQty" layoutX="352.0" layoutY="199.0" onKeyTyped="#txtQty" />
       <Label layoutX="91.0" layoutY="82.0" text="Room Type Id" />
       <Label layoutX="352.0" layoutY="90.0" text="Room Type" />
       <Label layoutX="91.0" layoutY="165.0" text="Key Money" />
       <Label layoutX="352.0" layoutY="165.0" text="Qty" />
-      <Button layoutX="426.0" layoutY="254.0" mnemonicParsing="false" onAction="#SaveOnAction" text="Save" />
-      <Button layoutX="507.0" layoutY="254.0" mnemonicParsing="false" onAction="#updateOnAction" text="Update" />
-      <Button layoutX="598.0" layoutY="254.0" mnemonicParsing="false" onAction="#deleteOnAction" text="Delete" />
-      <TableView fx:id="tableRoom" layoutX="60.0" layoutY="327.0" prefHeight="225.0" prefWidth="609.0">
+      <Button fx:id="btnSave" disable="true" layoutX="426.0" layoutY="254.0" mnemonicParsing="false" onAction="#SaveOnAction" text="Save" />
+      <Button fx:id="btnUpdate" disable="true" layoutX="507.0" layoutY="254.0" mnemonicParsing="false" onAction="#updateOnAction" text="Update" />
+      <Button fx:id="btnDelete" disable="true" layoutX="598.0" layoutY="254.0" mnemonicParsing="false" onAction="#deleteOnAction" text="Delete" />
+      <TableView fx:id="tableRoom" layoutX="60.0" layoutY="327.0" onMouseClicked="#tblOnAction" prefHeight="225.0" prefWidth="609.0">
         <columns>
           <TableColumn fx:id="colRoomId" prefWidth="134.0" text="Room Type Id" />
           <TableColumn fx:id="colRoomType" prefWidth="156.0" text="Room Type" />
@@ -35,5 +35,7 @@
             <Image url="@images/icons8-home-96.png" />
          </image>
       </ImageView>
+      <TextField fx:id="txtMaxStudent" layoutX="579.0" layoutY="114.0" onKeyTyped="#txtMaxQty" prefHeight="24.0" prefWidth="39.0" />
+      <Label layoutX="561.0" layoutY="90.0" text="Max Student" />
    </children>
 </AnchorPane>

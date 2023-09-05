@@ -11,8 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.D24_hostel.bo.BOFactory;
 import lk.ijse.D24_hostel.bo.custom.UserBO;
 import lk.ijse.D24_hostel.bo.custom.impl.UserBOImpl;
 import lk.ijse.D24_hostel.dto.UserDTO;
@@ -27,22 +29,23 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
     public ComboBox cmbUserId;
     public AnchorPane paneLogin;
-    UserBO userBO = new UserBOImpl();
+
     @FXML
     private TextField txtPassword;
 
     @FXML
     private TextField txtUserName;
-      static String id ;
+    static String id;
+    UserBO userBO = BOFactory.getBoFactory().getBo(BOFactory.BOTypes.UserBO);
     public void signInOnAction(ActionEvent event) {
-id= (String) cmbUserId.getValue();
+        id = (String) cmbUserId.getValue();
 
 
         UserDTO userDTO = userBO.searchUsers((String) cmbUserId.getValue());
         String useName = userDTO.getUserName();
         String pwd = userDTO.getPassword();
 
-        if(useName.equals(txtUserName.getText()) && pwd.equals(txtPassword.getText())){
+        if (useName.equals(txtUserName.getText()) && pwd.equals(txtPassword.getText())) {
 //            new ChangePwdController(userDTO.getUserId());
             Stage stage = new Stage();
             stage.resizableProperty().setValue(true);
@@ -63,8 +66,8 @@ id= (String) cmbUserId.getValue();
             DashboardController changePwdController = new DashboardController();
             changePwdController.setUserId((String) cmbUserId.getValue());
 
-        }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Login Unsuccessfully!");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Login Unsuccessfully!");
             alert.show();
         }
 
@@ -86,12 +89,13 @@ id= (String) cmbUserId.getValue();
 
 
         stage.show();
+        paneLogin.getScene().getWindow().hide();
     }
 
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-      loadIds();
+        loadIds();
     }
 
     private void loadIds() throws SQLException {
@@ -103,4 +107,16 @@ id= (String) cmbUserId.getValue();
         cmbUserId.setItems(obList);
     }
 
+    public void onEn(MouseEvent mouseEvent) {
+        txtPassword.setPromptText(txtPassword.getText());
+        txtPassword.setText("");
+        txtPassword.setDisable(true);
+        txtPassword.requestFocus();
+    }
+
+    public void onEx(MouseEvent mouseEvent) {
+        txtPassword.setText(txtPassword.getPromptText());
+        txtPassword.setPromptText("");
+        txtPassword.setDisable(false);
+    }
 }

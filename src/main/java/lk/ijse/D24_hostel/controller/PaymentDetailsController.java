@@ -6,6 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.D24_hostel.bo.BOFactory;
 import lk.ijse.D24_hostel.bo.custom.PaymentDetailBO;
 import lk.ijse.D24_hostel.bo.custom.impl.PaymentDetailBOImpl;
 import lk.ijse.D24_hostel.dto.CustomDTO;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class PaymentDetailsController implements Initializable {
-    PaymentDetailBO paymentDetailBO = new PaymentDetailBOImpl();
+    PaymentDetailBO paymentDetailBO = BOFactory.getBoFactory().getBo(BOFactory.BOTypes.PaymentDetailsBO);
     @FXML
     private TableColumn<?, ?> colAddress;
 
@@ -53,8 +54,8 @@ public class PaymentDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-     getAll();
-     setCellValueFactory();
+        getAll();
+        setCellValueFactory();
     }
 
     private void setCellValueFactory() {
@@ -70,7 +71,6 @@ public class PaymentDetailsController implements Initializable {
         colResId.setCellValueFactory(new PropertyValueFactory<>("resId"));
 
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
 
 
     }

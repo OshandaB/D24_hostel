@@ -14,8 +14,17 @@ public class RoomDTO {
     private String roomType;
     private int qty;
     private int avaliable_room;
+    private int maxStudent;
 
-    public RoomDTO(String roomTypeId, String keyMoney, String roomType, int qty) {
+    public RoomDTO(String roomTypeId, String keyMoney, String roomType, int qty,int maxStudent) {
+        this.roomTypeId = roomTypeId;
+        this.keyMoney = keyMoney;
+        this.roomType = roomType;
+        this.qty = qty;
+        this.maxStudent=maxStudent;
+    }
+
+    public RoomDTO(String roomId, String keyMoney, String roomType, int qty) {
         this.roomTypeId = roomTypeId;
         this.keyMoney = keyMoney;
         this.roomType = roomType;
@@ -23,7 +32,7 @@ public class RoomDTO {
     }
 
     public Room toEntity() {
-        Room room = new Room(roomTypeId,roomType,keyMoney,qty,avaliable_room);
+        Room room = new Room(roomTypeId,roomType,keyMoney,qty,avaliable_room,maxStudent);
         return room;
     }
 }

@@ -9,4 +9,5 @@ import java.util.List;
 public interface QueryDAO extends SuperDAO {
     void setSession(Session session);
     public List<CustomProjection> getPaymentDetails();
+    public CustomProjection getStudentDetails(String id);
 }

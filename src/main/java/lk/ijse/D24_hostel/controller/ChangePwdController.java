@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import lk.ijse.D24_hostel.bo.BOFactory;
 import lk.ijse.D24_hostel.bo.custom.UserBO;
 import lk.ijse.D24_hostel.bo.custom.impl.UserBOImpl;
 import lk.ijse.D24_hostel.dto.UserDTO;
@@ -13,8 +14,8 @@ import lk.ijse.D24_hostel.dto.UserDTO;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChangePwdController implements Initializable  {
-UserBO userBO = new UserBOImpl();
+public class ChangePwdController implements Initializable {
+    UserBO userBO = BOFactory.getBoFactory().getBo(BOFactory.BOTypes.UserBO);
     @FXML
     private Label lblUsrId;
 
@@ -26,7 +27,7 @@ UserBO userBO = new UserBOImpl();
 
     @FXML
     private TextField txtUserName;
-    private  String userId;
+    private String userId;
 
     public String getUserId() {
         return userId;
@@ -45,14 +46,14 @@ UserBO userBO = new UserBOImpl();
         String useName = txtUserName.getText();
         String pwd = txtPassword.getText();
         String confPwd = txtConfirmPwd.getText();
-        if (pwd.equals(confPwd)){
+        if (pwd.equals(confPwd)) {
             System.out.println(LoginController.id);
-            UserDTO dto = new UserDTO(LoginController.id,useName,pwd);
+            UserDTO dto = new UserDTO(LoginController.id, useName, pwd);
             boolean updated = userBO.updateUsers(dto);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"PASSWORD Change SuccessFully!!");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "PASSWORD Change SuccessFully!!");
             alert.show();
-        }else {
-            Alert alert = new Alert(Alert.AlertType.WARNING,"PASSWORD doesnot match !!!");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "PASSWORD doesnot match !!!");
             alert.show();
         }
 

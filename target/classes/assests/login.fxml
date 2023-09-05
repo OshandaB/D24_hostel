@@ -29,5 +29,10 @@
       <JFXButton buttonType="RAISED" layoutX="510.0" layoutY="390.0" onAction="#signUpOnAction" prefHeight="24.0" prefWidth="91.0" style="-fx-background-color: #2BD883;" text="Sign Up" />
       <ComboBox fx:id="cmbUserId" layoutX="480.0" layoutY="124.0" prefWidth="150.0" promptText="userId" />
       <PasswordField fx:id="txtPassword" layoutX="470.0" layoutY="290.0" />
+      <ImageView fitHeight="24.0" fitWidth="27.0" layoutX="603.0" layoutY="290.0" onMouseEntered="#onEn" onMouseExited="#onEx" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icons8-show-password-48.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

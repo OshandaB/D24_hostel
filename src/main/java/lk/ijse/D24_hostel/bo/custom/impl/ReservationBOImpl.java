@@ -3,16 +3,19 @@ package lk.ijse.D24_hostel.bo.custom.impl;
 import lk.ijse.D24_hostel.bo.custom.ReservationBO;
 import lk.ijse.D24_hostel.config.SessionFactoryConfig;
 import lk.ijse.D24_hostel.dao.DAOFactory;
+import lk.ijse.D24_hostel.dao.custom.QueryDAO;
 import lk.ijse.D24_hostel.dao.custom.ReservationDAO;
 import lk.ijse.D24_hostel.dao.custom.RoomDAO;
 import lk.ijse.D24_hostel.dao.custom.StudentDAO;
 import lk.ijse.D24_hostel.dao.custom.impl.ReservationDAOImpl;
 import lk.ijse.D24_hostel.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.D24_hostel.dao.custom.impl.StudentDAOImpl;
+import lk.ijse.D24_hostel.dto.CustomDTO;
 import lk.ijse.D24_hostel.dto.ReservationDTO;
 import lk.ijse.D24_hostel.dto.RoomDTO;
 import lk.ijse.D24_hostel.entity.Reservation;
 import lk.ijse.D24_hostel.entity.Room;
+import lk.ijse.D24_hostel.projection.CustomProjection;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -23,7 +26,7 @@ public class ReservationBOImpl implements ReservationBO {
     RoomDAO roomDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.RoomDAO);
     StudentDAO studentDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.StudentDAO);
     ReservationDAO reservationDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ReservationDAO);
-
+QueryDAO queryDAO = DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.QueryDAO);
     @Override
     public boolean saveReservation(ReservationDTO reservationDTO) {
         Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();
@@ -37,11 +40,11 @@ public class ReservationBOImpl implements ReservationBO {
             //System.out.println(rooms.getQty());
             Room roomss = roomDAO.getCustomerById(reservationDTO.getRoomTypeId());
             int count = reservationDAO.countReservation(reservationDTO.getRoomTypeId());
-            int count1 = count / 2;
+            int count1 = count / roomss.getMaximum_student();
             System.out.println(count1);
 
 
-            RoomDTO roomDTO = new RoomDTO(roomss.getRoomId(), roomss.getKeyMoney(), roomss.getRoomType(), roomss.getQty(), roomss.getAvaliable_room());
+            RoomDTO roomDTO = new RoomDTO(roomss.getRoomId(), roomss.getKeyMoney(), roomss.getRoomType(), roomss.getQty(), roomss.getAvaliable_room(), roomss.getMaximum_student());
             roomDTO.setAvaliable_room(roomss.getQty() - count1);
             System.out.println(roomDTO.getQty());
 //            roomDAO.update(new Room(roomDTO.getRoomTypeId(),roomDTO.getRoomType(),roomDTO.getKeyMoney(),roomDTO.getQty()));
@@ -155,6 +158,26 @@ public class ReservationBOImpl implements ReservationBO {
         ArrayList<String> list = studentDAO.loadIds();
         session.close();
         return list;
+    }
+
+    @Override
+    public RoomDTO getRoomsById(String id) {
+        Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();
+        roomDAO.setSession(session);
+        Room rooms = roomDAO.getCustomerById(id);
+        System.out.println(rooms.getAvaliable_room());
+        RoomDTO roomDTO = new RoomDTO(rooms.getRoomId(),rooms.getKeyMoney(),rooms.getRoomType(),rooms.getQty());
+        roomDTO.setAvaliable_room(rooms.getAvaliable_room());
+        return roomDTO;
+    }
+
+    @Override
+    public CustomDTO getStudentDetails(String id) {
+        Session session = SessionFactoryConfig.getSessionFactoryConfig().getSession();
+        queryDAO.setSession(session);
+        CustomProjection studentDetails = queryDAO.getStudentDetails(id);
+        CustomDTO customDTO = new CustomDTO(studentDetails.getStudentId(),studentDetails.getStudentName(),studentDetails.getAddress(),studentDetails.getContact(),studentDetails.getDob(),studentDetails.getGender());
+        return customDTO;
     }
 
 //    @Override

@@ -10,29 +10,33 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="reservationPane" prefHeight="617.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.D24_hostel.controller.ReservationController">
    <children>
-      <TextField fx:id="txtId" layoutX="109.0" layoutY="194.0" />
+      <TextField fx:id="txtId" layoutX="109.0" layoutY="194.0" onKeyTyped="#txtValiResId" />
       <TextField fx:id="txtStatus" layoutX="109.0" layoutY="274.0" />
       <Label layoutX="93.0" layoutY="82.0" text="Student ID" />
       <Label layoutX="110.0" layoutY="170.0" text="res Id" />
       <Label layoutX="107.0" layoutY="249.0" text="Status" />
       <Label layoutX="362.0" layoutY="211.0" />
-      <Button layoutX="426.0" layoutY="309.0" mnemonicParsing="false" onAction="#SaveOnAction" text="Save" />
-      <Button layoutX="510.0" layoutY="309.0" mnemonicParsing="false" onAction="#updateOnAction" text="Update" />
-      <Button layoutX="599.0" layoutY="309.0" mnemonicParsing="false" onAction="#deleteOnAction" text="Delete" />
+      <Button fx:id="btnSave" disable="true" layoutX="426.0" layoutY="309.0" mnemonicParsing="false" onAction="#SaveOnAction" text="Save" />
+      <Button fx:id="btnUpdate" disable="true" layoutX="510.0" layoutY="309.0" mnemonicParsing="false" onAction="#updateOnAction" text="Update" />
+      <Button fx:id="btnDelete" disable="true" layoutX="599.0" layoutY="309.0" mnemonicParsing="false" onAction="#deleteOnAction" text="Delete" />
       <ComboBox fx:id="cmbStudentIds" layoutX="110.0" layoutY="114.0" prefWidth="150.0" />
       <ComboBox fx:id="cmbRoomIds" layoutX="393.0" layoutY="114.0" onAction="#roomOnAction" prefWidth="150.0" />
       <Label layoutX="389.0" layoutY="82.0" text="Room Type Id " />
-      <Label layoutX="404.0" layoutY="170.0" text="Date" />
-      <Label fx:id="lblDate" layoutX="404.0" layoutY="196.0" prefHeight="30.0" prefWidth="162.0" />
+      <Label fx:id="lblDate" layoutX="533.0" layoutY="32.0" prefHeight="30.0" prefWidth="162.0">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
       <ImageView fitHeight="46.0" fitWidth="50.0" layoutX="33.0" layoutY="24.0" onMouseClicked="#dashboardOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/icons8-home-96.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblResevation" layoutX="78.0" layoutY="373.0" prefHeight="200.0" prefWidth="599.0">
+      <TableView fx:id="tblResevation" layoutX="78.0" layoutY="373.0" onMouseClicked="#tblOnAction" prefHeight="200.0" prefWidth="599.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="128.0" text="Student Id" />
           <TableColumn fx:id="roomId" prefWidth="134.0" text="RoomType Id" />
@@ -42,5 +46,22 @@
         </columns>
       </TableView>
       <JFXButton buttonType="RAISED" layoutX="274.0" layoutY="114.0" onAction="#addNewOnAction" style="-fx-background-color: #2BD883;" text="+ Add New" />
+      <Label layoutX="404.0" layoutY="149.0" prefHeight="16.0" prefWidth="123.0" text="Avaliable Rooms :">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAvaRooms" layoutX="533.0" layoutY="145.0" prefHeight="24.0" prefWidth="46.0">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSearch" layoutX="494.0" layoutY="35.0" prefHeight="24.0" prefWidth="171.0" />
+      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="630.0" layoutY="35.0" onMouseClicked="#searchOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icons8-search-50.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="188.0" layoutX="559.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
    </children>
 </AnchorPane>

@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.D24_hostel.bo.BOFactory;
+import lk.ijse.D24_hostel.bo.custom.HomeBO;
+import lk.ijse.D24_hostel.bo.custom.impl.HomeBOImpl;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +26,10 @@ public class DashboardController implements Initializable {
     public Label lblTime1;
     public Label lblDate;
     public Label lblTest;
-    private  String userId;
+    public Label lblRoomCount;
+    public Label lblStuCount;
+    private String userId;
+    HomeBO homeBO = BOFactory.getBoFactory().getBo(BOFactory.BOTypes.HomeBO);
 
     public void setUserId(String userId) {
         this.userId = userId;
@@ -109,26 +115,28 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-TimeNow();
-lblTest.setText(LoginController.id);
+        TimeNow();
+        lblTest.setText(LoginController.id);
+        studentCount();
+        roomsCount();
     }
 
     private void TimeNow() {
-        Thread thread =new Thread(() ->{
+        Thread thread = new Thread(() -> {
             SimpleDateFormat sdf = new SimpleDateFormat("hh:mm ");
             SimpleDateFormat sdf1 = new SimpleDateFormat("MMMM,  dd, yyyy");
             SimpleDateFormat sdf2 = new SimpleDateFormat(" a");
-            while (true){
-                try{
+            while (true) {
+                try {
                     Thread.sleep(1000);
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                 }
                 final String timenow = sdf.format(new Date());
                 String timenow1 = sdf1.format(new Date());
                 final String timenow2 = sdf2.format(new Date());
-                Platform.runLater(() ->{
+                Platform.runLater(() -> {
                     lblTime.setText(timenow);
                     lblTime1.setText(timenow2);
                     lblDate.setText(timenow1);
@@ -159,5 +167,15 @@ lblTest.setText(LoginController.id);
 
 
         stage.show();
+    }
+
+    public void studentCount() {
+        lblStuCount.setText(String.valueOf(homeBO.studentCount()));
+
+    }
+
+    public void roomsCount() {
+        lblRoomCount.setText(String.valueOf(homeBO.roomCount()));
+
     }
 }

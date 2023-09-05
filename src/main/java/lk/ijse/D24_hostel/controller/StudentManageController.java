@@ -1,7 +1,11 @@
 package lk.ijse.D24_hostel.controller;
 
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import lk.ijse.D24_hostel.bo.BOFactory;
 import lk.ijse.D24_hostel.bo.custom.StudentBO;
 import lk.ijse.D24_hostel.bo.custom.impl.StudentBOImpl;
+import lk.ijse.D24_hostel.controller.util.ValidationController;
 import lk.ijse.D24_hostel.dto.StudentDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,10 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -29,6 +29,9 @@ import java.util.ResourceBundle;
 
 public class StudentManageController implements Initializable {
     public AnchorPane studentPane;
+    public Button btnSave;
+    public Button btnUpdate;
+    public Button btnDelete;
     @FXML
     private TableView<StudentTM> tblStudent;
     @FXML
@@ -65,7 +68,7 @@ public class StudentManageController implements Initializable {
 
     @FXML
     private TextField txtName;
-    StudentBO studentBO = new StudentBOImpl();
+    StudentBO studentBO = BOFactory.getBoFactory().getBo(BOFactory.BOTypes.StudentBO);
 
     public void SaveOnAction(ActionEvent actionEvent) {
         String id = txtId.getText();
@@ -136,7 +139,7 @@ public class StudentManageController implements Initializable {
         tblStudent.getItems().clear();
         ArrayList<StudentDTO> allStudents = studentBO.getAllStudents();
         for (StudentDTO allStudent : allStudents) {
-            tblStudent.getItems().addAll(new StudentTM(allStudent.getStudentId(), allStudent.getStudentName(), allStudent.getAddress(), allStudent.getContact(),allStudent.getDob(),allStudent.getGender()));
+            tblStudent.getItems().addAll(new StudentTM(allStudent.getStudentId(), allStudent.getStudentName(), allStudent.getAddress(), allStudent.getContact(), allStudent.getDob(), allStudent.getGender()));
         }
     }
 
@@ -151,5 +154,108 @@ public class StudentManageController implements Initializable {
 
         colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
+    }
+
+    public void txtValiId(KeyEvent keyEvent) {
+    }
+
+    public void txtValiName(KeyEvent keyEvent) {
+        String name = txtName.getText();
+        String name1 = txtContact.getText();
+
+        String name2 = txtAddress.getText();
+
+        try {
+            boolean isValidate1 = ValidationController.name(name);
+            boolean isValidate = ValidationController.PhoneNumber(name1);
+            boolean isValidate2 = ValidationController.address(name2);
+//          btnSave.setDisable(!isValidate | txtCustId.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty() | txtEmail.getText().isEmpty() );
+            if (isValidate1) {
+                txtName.setStyle("-fx-border-color : green");
+                txtName.setOnAction((e) -> {
+                    txtAddress.requestFocus();
+                });
+                btnSave.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnUpdate.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnDelete.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+
+            } else {
+                txtName.setStyle("-fx-border-color: red");
+                //btnSave.setDisable(true);
+                btnSave.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnUpdate.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnDelete.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
+    public void txtValiCnt(KeyEvent keyEvent) {
+        String name = txtContact.getText();
+        String name1 = txtName.getText();
+        String name2 = txtAddress.getText();
+
+        try {
+
+            boolean isValidate1 = ValidationController.name(name1);
+            boolean isValidate = ValidationController.PhoneNumber(name);
+            boolean isValidate2 = ValidationController.address(name2);
+//          btnSave.setDisable(!isValidate | txtCustId.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty() | txtEmail.getText().isEmpty() );
+            if (isValidate) {
+                txtContact.setStyle("-fx-border-color : green");
+                txtContact.setOnAction((e) -> {
+                    txtAddress.requestFocus();
+                });
+                btnSave.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnUpdate.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnDelete.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+
+            } else {
+                txtContact.setStyle("-fx-border-color: red");
+                //btnSave.setDisable(true);
+                btnSave.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnUpdate.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnDelete.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void txtValiAddress(KeyEvent keyEvent) {
+        String name = txtAddress.getText();
+        String name2 = txtContact.getText();
+        String name1 = txtName.getText();
+
+
+        try {
+            boolean isValidate = ValidationController.address(name);
+            boolean isValidate1 = ValidationController.name(name1);
+            boolean isValidate2 = ValidationController.PhoneNumber(name2);
+//          btnSave.setDisable(!isValidate | txtCustId.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty() | txtEmail.getText().isEmpty() );
+            if (isValidate) {
+                txtAddress.setStyle("-fx-border-color : green");
+                txtAddress.setOnAction((e) -> {
+                    txtAddress.requestFocus();
+                });
+                btnSave.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnUpdate.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnDelete.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+
+            } else {
+                txtAddress.setStyle("-fx-border-color: red");
+                //btnSave.setDisable(true);
+                btnSave.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnUpdate.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+                btnDelete.setDisable(!isValidate | !isValidate1 | !isValidate2 | txtName.getText().isEmpty() | txtAddress.getText().isEmpty() | txtContact.getText().isEmpty());
+
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void txtValiGender(KeyEvent keyEvent) {
     }
 }
