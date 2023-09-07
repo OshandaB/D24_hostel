@@ -56,12 +56,28 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSearch" layoutX="494.0" layoutY="35.0" prefHeight="24.0" prefWidth="171.0" />
-      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="630.0" layoutY="35.0" onMouseClicked="#searchOnAction" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="txtSearch" layoutX="234.0" layoutY="35.0" prefHeight="24.0" prefWidth="171.0" />
+      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="366.0" layoutY="36.0" onMouseClicked="#searchOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/icons8-search-50.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="188.0" layoutX="559.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="123.0" />
+      <AnchorPane fx:id="stAnc" layoutX="487.0" layoutY="64.0" onMouseClicked="#onClick" prefHeight="228.0" prefWidth="223.0" visible="false">
+         <children>
+            <Rectangle fx:id="stDetails" arcHeight="5.0" arcWidth="5.0" fill="#f6f7f8" height="228.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
+            <Label layoutX="28.0" layoutY="34.0" prefHeight="16.0" prefWidth="42.0" text="StId :" />
+            <Label layoutX="29.0" layoutY="66.0" prefHeight="16.0" prefWidth="50.0" text="Name :" />
+            <Label layoutX="27.0" layoutY="97.0" prefHeight="16.0" prefWidth="61.0" text="Address :" />
+            <Label layoutX="27.0" layoutY="122.0" prefHeight="16.0" prefWidth="61.0" text="Contact :" />
+            <Label layoutX="27.0" layoutY="146.0" prefHeight="16.0" prefWidth="61.0" text="dob :" />
+            <Label layoutX="27.0" layoutY="177.0" prefHeight="16.0" prefWidth="61.0" text="gender :" />
+            <Label fx:id="lblId" layoutX="94.0" layoutY="34.0" prefHeight="16.0" prefWidth="94.0" />
+            <Label fx:id="lblName" layoutX="101.0" layoutY="66.0" prefHeight="16.0" prefWidth="104.0" />
+            <Label fx:id="lblAddress" layoutX="106.0" layoutY="97.0" prefHeight="16.0" prefWidth="104.0" />
+            <Label fx:id="lblContact" layoutX="106.0" layoutY="122.0" prefHeight="16.0" prefWidth="104.0" />
+            <Label fx:id="lblDob" layoutX="101.0" layoutY="147.0" prefHeight="16.0" prefWidth="104.0" />
+            <Label fx:id="lblGender" layoutX="99.0" layoutY="177.0" prefHeight="16.0" prefWidth="104.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

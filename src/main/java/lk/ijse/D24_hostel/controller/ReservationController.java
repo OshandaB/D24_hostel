@@ -3,6 +3,7 @@ package lk.ijse.D24_hostel.controller;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Rectangle;
 import lk.ijse.D24_hostel.bo.BOFactory;
 import lk.ijse.D24_hostel.bo.custom.ReservationBO;
 import lk.ijse.D24_hostel.bo.custom.impl.ReservationBOImpl;
@@ -35,6 +36,14 @@ import java.util.ResourceBundle;
 
 public class ReservationController implements Initializable {
     public TextField txtSearch;
+    public Rectangle stDetails;
+    public Label lblId;
+    public Label lblName;
+    public Label lblAddress;
+    public Label lblContact;
+    public Label lblDob;
+    public Label lblGender;
+    public AnchorPane stAnc;
     @FXML
     private Button btnDelete;
 
@@ -274,6 +283,17 @@ public class ReservationController implements Initializable {
     public void searchOnAction(MouseEvent mouseEvent) {
         String id = txtSearch.getText();
         CustomDTO details = reservationBO.getStudentDetails(id);
-        System.out.println(details);
+        stAnc.setVisible(true);
+        lblId.setText(details.getStudentId());
+        lblName.setText(details.getStudentName());
+        lblContact.setText(details.getContact());
+        lblAddress.setText(details.getAddress());
+        lblDob.setText(String.valueOf(details.getDob()));
+        lblGender.setText(details.getGender());
+
+    }
+
+    public void onClick(MouseEvent mouseEvent) {
+        stAnc.setVisible(false);
     }
 }
